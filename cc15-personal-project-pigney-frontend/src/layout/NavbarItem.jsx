@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function NavbarItem({to, active, name}) {
-    console.log(active);
   return (
     <>
         <Link to={to}>

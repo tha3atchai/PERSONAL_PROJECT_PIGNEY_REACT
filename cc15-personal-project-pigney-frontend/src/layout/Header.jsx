@@ -3,8 +3,13 @@ import CreateGoalButton from '../features/auth/CreateGoalButton'
 import PigneyIcon from './PigneyIcon'
 import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../hooks/use-auth'
+import blankProfile from "../assets/blank.png"
+import ProfileAvatar from '../features/profile/ProfileAvatar'
 
 function Header() {
+    const {dataUser} = useAuth();
+
   return (
     <>
         <div className='flex h-20 pt-2 justify-between'>
@@ -18,9 +23,17 @@ function Header() {
                     <div>
                         <Navbar />
                     </div>
-                    <div>
-                        <CreateGoalButton type="outline" />
-                    </div>
+                    {dataUser ? (
+                        <div className='w-12'>
+                            <Link to={`/profile/${dataUser.user.id}`}>
+                                <ProfileAvatar w={10} />
+                            </Link>
+                        </div>
+                    ) : (
+                        <div>
+                            <CreateGoalButton type="outline" />
+                        </div>
+                    )}
                 </div>
             </div>
         </div> 

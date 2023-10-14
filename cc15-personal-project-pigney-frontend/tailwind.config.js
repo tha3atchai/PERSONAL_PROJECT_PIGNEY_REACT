@@ -18,9 +18,10 @@ export default {
         "pigney-button": "0px 0px 24px 12px rgba(255, 255, 255, .12)",
       },
       animation: {
-        "logo-pulse": "logopulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "logo-pulse": "logopulse 4.4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "coin-flying1": "bounce 3s infinite",
         "coin-flying2": "bounce 2.6s infinite",
+        "loading": "loading 2.2s cubic-bezier(0, 0, 0.2, 1) infinite",
       },
       keyframes: {
         logopulse: {
@@ -28,12 +29,32 @@ export default {
               opacity: 1,
             },
             "50%": {
-              opacity: .24,
+              opacity: .16,
             },
+        },
+        loading: {
+          "0%, 25%": {
+            transform: "scale(1)",
+            opacity: 1,
+          },
+          "25%, 50%": {
+            transform: "scale(2.2)",
+            opacity: 0,
+          },
+          "50%, 75%": {
+            transform: "scale(6)",
+            opacity: .9,
+          },
+          "75%, 100%": {
+            transform: "scale(32)",
+            opacity: .8,
+          },
         },
       },
     },
   },
   plugins: [],
 }
+
+
 

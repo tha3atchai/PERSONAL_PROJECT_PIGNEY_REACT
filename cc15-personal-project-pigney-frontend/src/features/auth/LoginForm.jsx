@@ -1,20 +1,44 @@
 import React from 'react'
 import LoginInput from './LoginInput'
 import { useState } from 'react';
+import { useAuth } from '../../hooks/use-auth';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import localStorageService from '../../utils/local-storage';
 
 function LoginForm() {
+    const navigate = useNavigate();
     const [input, setInput] = useState({
         emailOrMobile: "",
         password: "",
     });
 
+    const {login, setDataUser, fetchData} = useAuth();
+
     const onChangeInput = e => {
         setInput({...input, [e.target.name]: e.target.value});
     };
 
+    const onSubmitInput = e => {
+        e.preventDefault();
+        login(input).then(res => {
+            localStorageService.setToken(res.data.token);
+            fetchData();
+            setDataUser(res.data);
+            navigate(`/profile/${res.data.user.id}`);
+        }).catch(err => (
+           toast.error(err.response?.data.message, {
+            style: {
+                backgroundColor: "#cff500",
+            },
+            theme: "light",
+           })
+        ))
+    };
+
   return (
     <>
-           <form className='flex w-80 flex-col gap-4'>
+           <form onSubmit={onSubmitInput} className='flex w-96 flex-col gap-4'>
             <div>
                 <LoginInput 
                 value={input.emailOrMobile}

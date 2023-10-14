@@ -5,6 +5,10 @@ import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import Authenticated from "../features/auth/Authenticated";
+import RedirectIfAuthenticate from "../features/auth/RedirectIfAuthenticate";
+import PiggyGoalsPage from "../pages/PiggyGoalsPage";
+
 
 const router = createBrowserRouter([
     {
@@ -12,10 +16,15 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
             {path: "", element: <HomePage />},
-            {path: "/profile/:profileId", element: <ProfilePage />},
-            {path: "/login", element: <LoginPage />},
-            {path: "/register", element: <RegisterPage />},
+            {path: "/profile/:profileId", element: <Authenticated><ProfilePage /></Authenticated>},
+            {path: "/piggygoals/:profileId", element: <Authenticated><PiggyGoalsPage /></Authenticated>},
+            {path: "/login", element: <RedirectIfAuthenticate><LoginPage /></RedirectIfAuthenticate>},
+            {path: "/register", element: <RedirectIfAuthenticate><RegisterPage /></RedirectIfAuthenticate>},
         ],
+    },
+    {
+        path: "*",
+        element: <Authenticated />,
     },
 ]);
 
