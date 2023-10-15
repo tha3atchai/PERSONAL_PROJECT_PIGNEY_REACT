@@ -9,6 +9,7 @@ export default {
       colors: {
         "pigney-purple": "#a66cff",
         "pigney-lemon": "#cff500",
+        "pigney-red": "#ef4444",
       },
       backgroundImage: {
         'hero-pattern': "url('/img/hero-pattern.svg')",
@@ -37,12 +38,12 @@ export default {
             transform: "scale(1)",
             opacity: 1,
           },
-          "25%, 50%": {
-            transform: "scale(2.2)",
+          "25%, 65%": {
+            transform: "scale(1.85)",
             opacity: 0,
           },
-          "50%, 75%": {
-            transform: "scale(6)",
+          "65%, 75%": {
+            transform: "scale(6.1)",
             opacity: .9,
           },
           "75%, 100%": {
@@ -53,7 +54,9 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
 }
 
 

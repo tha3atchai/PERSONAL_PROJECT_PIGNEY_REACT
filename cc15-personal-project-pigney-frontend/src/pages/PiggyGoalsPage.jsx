@@ -5,6 +5,9 @@ import ProfileCard from '../features/profile/ProfileCard'
 import PiggyGoalNote from '../features/piggygoal/PiggyGoalNote'
 import DoughnutChart from '../components/DoughnutChart'
 import CountUp from "react-countup";
+import PiggyRecord from '../features/piggygoal/PiggyRecord'
+import PiggyCountUpFunds from '../features/piggygoal/PiggyCountUpFunds'
+import PiggyGoalSaving from '../features/piggygoal/PiggyGoalSaving'
 
 function PiggyGoalsPage() {
 
@@ -20,40 +23,15 @@ function PiggyGoalsPage() {
         </div>
         <div className='col-span-2'>
           <div className='flex flex-col pt-4 h-full justify-around'>
-
-            <div className='flex flex-col gap-2 justify-center items-center pb-2'>
-                <div className='text-3xl'>GOAL SAVINGS</div>
-                <div className='text-5xl text-pigney-purple font-semibold'>
-                $ <CountUp start={0} end={432} duration={3.6} delay={0} easingFn={easingFnEaseOutSine} />
-                </div>
-            </div>
+            <PiggyGoalSaving />
             <div className='grid grid-cols-4 w-5/6 m-auto h-full px-8'>
                 <div className='col-span-1 h-full'>
-                    <div className='flex h-full flex-col gap-5 justify-center'>
-                        <div>
-                            <div className='text-lg font-light'>Daily</div>
-                            <div className='text-pigney-purple text-2xl font-semibold'>
-                                $ <CountUp start={0} end={15} duration={3.6} delay={0} easingFn={easingFnEaseOutSine} />
-                            </div>
-                        </div>
-                        <div>
-                            <div className='text-lg font-light'>Weekly</div>
-                            <div className='text-pigney-purple text-2xl font-semibold'>
-                                $ <CountUp start={0} end={100} duration={3.6} delay={0} easingFn={easingFnEaseOutSine} />
-                            </div>
-                        </div>
-                        <div>
-                            <div className='text-lg font-light'>Monthly</div>
-                            <div className='text-pigney-purple text-2xl font-semibold'>
-                                $ <CountUp start={0} end={500} duration={3.6} delay={0} easingFn={easingFnEaseOutSine} />
-                            </div>
-                        </div>
-                    </div>
+                    <PiggyCountUpFunds />
                 </div>
                 <div className='col-span-2'>
-                    <div className='flex h-full justify-center'>
-                        <div className='w-48 self-center'>
-                            <DoughnutChart />
+                    <div className='absolute top-[30%] justify-center'>
+                        <div className='relative right-7 bottom-10'>
+                            <DoughnutChart width={72} type={"2"} />
                         </div>
                     </div>
                 </div>
@@ -73,6 +51,7 @@ function PiggyGoalsPage() {
         <div className='col-span-1'>
           <div className='flex flex-col items-center pt-3 h-full justify-between'>
             <ProfileFriends /> 
+            <PiggyRecord />
           </div> 
         </div>
       </div>

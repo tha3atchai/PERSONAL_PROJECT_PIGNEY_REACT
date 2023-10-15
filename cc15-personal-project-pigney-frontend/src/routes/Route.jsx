@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         children: [
             {path: "", element: <HomePage />},
             {path: "/profile/:profileId", element: <Authenticated><ProfilePage /></Authenticated>},
-            {path: "/piggygoals/:profileId", element: <Authenticated><PiggyGoalsPage /></Authenticated>},
+            {path: "/piggygoals/:piggygoalsId", element: <Authenticated><PiggyGoalsPage /></Authenticated>},
             {path: "/login", element: <RedirectIfAuthenticate><LoginPage /></RedirectIfAuthenticate>},
             {path: "/register", element: <RedirectIfAuthenticate><RegisterPage /></RedirectIfAuthenticate>},
         ],

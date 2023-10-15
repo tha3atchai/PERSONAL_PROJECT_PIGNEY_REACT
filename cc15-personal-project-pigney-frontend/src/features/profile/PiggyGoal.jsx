@@ -45,7 +45,9 @@ function PiggyGoal() {
                 <div className='relative left-[48px] top-[96px] text-3xl text-pigney-lemon'>
                     <CountUp start={0} end={70} duration={3.6} delay={0} easingFn={easingFnEaseOutSine} />%
                 </div>
-                <DoughnutChart  />
+                <div className='flex pt-[6px] w-36'>
+                    <DoughnutChart  />
+                </div>
             </div>
         </div>
     </>
