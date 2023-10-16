@@ -3,6 +3,7 @@ import {
     BsFillArrowRightCircleFill,
     BsFillArrowLeftCircleFill,
   } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 
 function Corousel({slides}) {
     let [current, setCurrent] = useState(0);
@@ -31,10 +32,14 @@ function Corousel({slides}) {
         })}
       </div>
 
-      <div className="absolute top-[-12px] h-full w-full justify-between items-center flex text-white/0 hover:text-white px-0 text-5xl duration-500">
+      <div className="absolute top-[-12px] h-full w-full justify-between items-center flex text-white/0 rounded-full hover:text-white hover:backdrop-blur-sm text-5xl duration-500">
         <button onClick={previousSlide}>
           <BsFillArrowLeftCircleFill />
         </button>
+        <Link to="/piggygoals/27">
+          <div className='text-3xl'>Click Here</div>
+          {/* <div className=''>to go piggy</div> */}
+        </Link>
         <button onClick={nextSlide}>
           <BsFillArrowRightCircleFill />
         </button>

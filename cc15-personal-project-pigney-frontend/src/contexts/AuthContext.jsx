@@ -29,16 +29,20 @@ export default function AuthContextProvider({children}) {
         else setInitialLoading(false);
     }, []);
 
-    const register = (body) => {
+    const register = body => {
         return axios.post("/auth/register", body);
     };
 
-    const login = (body) => {
+    const login = body => {
         return axios.post("/auth/login", body);
     };
 
+    const updateProfile = body => {
+        return axios.patch("/user", body);
+    };
+
     return (
-        <AuthContext.Provider value={{register, login, dataUser, setDataUser, initialLoading, setInitialLoading, fetchData}}>
+        <AuthContext.Provider value={{register, login, dataUser, setDataUser, initialLoading, setInitialLoading, fetchData, updateProfile}}>
             {children}
         </AuthContext.Provider> 
     );

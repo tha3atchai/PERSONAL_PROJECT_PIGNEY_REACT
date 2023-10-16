@@ -4,7 +4,6 @@ import PigneyIcon from './PigneyIcon'
 import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/use-auth'
-import blankProfile from "../assets/blank.png"
 import ProfileAvatar from '../features/profile/ProfileAvatar'
 
 function Header() {
@@ -26,7 +25,7 @@ function Header() {
                     {dataUser ? (
                         <div className='w-12'>
                             <Link to={`/profile/${dataUser.user.id}`}>
-                                <ProfileAvatar w={10} />
+                                <ProfileAvatar w={10} src={dataUser.user.profileImage} />
                             </Link>
                         </div>
                     ) : (

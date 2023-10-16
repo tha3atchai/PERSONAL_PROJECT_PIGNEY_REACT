@@ -29,10 +29,8 @@ function PiggyGoalsPage() {
                     <PiggyCountUpFunds />
                 </div>
                 <div className='col-span-2'>
-                    <div className='absolute top-[30%] justify-center'>
-                        <div className='relative right-7 bottom-10'>
-                            <DoughnutChart width={72} type={"2"} />
-                        </div>
+                    <div className='absolute'>
+                        <DoughnutChart width={72} type={"2"} />
                     </div>
                 </div>
                 <div className='col-span-1'>

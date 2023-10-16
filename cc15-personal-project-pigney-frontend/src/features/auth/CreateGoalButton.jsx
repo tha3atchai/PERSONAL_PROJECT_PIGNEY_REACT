@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import pigneyLogoBlack from "../../assets/SVG/pigneyLogoBlack.svg"
 import pigneyLogoWhite from "../../assets/SVG/pigneyLogoWhite.svg"
 import { useAuth } from '../../hooks/use-auth';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../../components/Modal';
+import CreateGoalForm from '../profile/CreateGoalForm';
 
 function CreateGoalButton({type}) {
+  const [isOpen, setIsOpen] = useState(false);
   const {dataUser} = useAuth();
   const navigate = useNavigate();
 
-  const handleClick = () => dataUser? navigate(`/profile/${dataUser.user.id}`) : navigate("/login");
+  const handleClick = () => dataUser? setIsOpen(true) : navigate("/login");
+
 
   let context = (
     <div className='text-black font-medium text-xs'>
@@ -22,6 +25,9 @@ function CreateGoalButton({type}) {
             <img src={pigneyLogoBlack} alt="" />
           </div>
         </button>
+        <Modal title={"CREATE GOALS"} open={isOpen} onClose={() => setIsOpen(false)}>
+          <CreateGoalForm text={"CREATE PIGGY"}/>
+        </Modal>
     </div>
   );
 

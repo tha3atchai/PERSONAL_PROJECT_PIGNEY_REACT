@@ -5,31 +5,39 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const data = {
-  labels: ["", "John", "Joe", "Jane", "Pun", "Film"],
+function DoughnutChart({width, type}) {
+
+const data = {
+  labels: ["", "Sin", "Joe", "Jane", "Pun", "Film"],
   datasets: [
     {
       label: "",
-      data: [30, 70, 30, 25],
+      data: [30, 70, 60, 25, 40, 50],
       backgroundColor: [
         'rgba(166, 108, 255, 0.4)',
         'rgba(207, 245, 0, 0.8)',
         'rgba(166, 108, 255, 0.8)',
-        "rgb(217, 70, 239, 0.8)",
-        "rgb(244, 63, 94, 0.8)",
-        "rgb(14, 165, 233, 0.8)",
-        "rgb(132, 204, 22, 0.8)",
-        "rgb(245, 158, 11, 0.8)",
+        "rgba(94, 234, 212, 0.8)",
+        "rgba(244, 63, 94, 0.8)",
+        "rgba(253, 224, 71, 0.8)",
+        "rgba(103, 232, 249, 0.8)",
+        "rgba(217, 70, 239, 0.8)",
+        "rgba(14, 165, 233, 0.8)",
+        "rgba(132, 204, 22, 0.8)",
+        "rgba(245, 158, 11, 0.8)",
       ],
       borderColor: [
         'rgba(166, 108, 255, 0.8)',
         'rgba(207, 245, 0, 1)',
         'rgba(166, 108, 255, 1)',
-        "rgb(217, 70, 239, 1)",
-        "rgb(244, 63, 94, 1)",
-        "rgb(14, 165, 233, 1)",
-        "rgb(132, 204, 22, 1)",
-        "rgb(245, 158, 11, 1)",
+        "rgba(94, 234, 212, 1)",
+        "rgba(244, 63, 94, 1)",
+        "rgba(253, 224, 71, 1)",
+        "rgba(103, 232, 249, 1)",
+        "rgba(217, 70, 239, 1)",
+        "rgba(14, 165, 233, 1)",
+        "rgba(132, 204, 22, 1)",
+        "rgba(245, 158, 11, 1)",
       ],
       borderWidth: 1,
       cutout: "75%",
@@ -78,31 +86,37 @@ const options = {
 };
 
 
-export const data2 = {
+const data2 = {
   labels: [],
   datasets: [
     {
       label: "",
-      data: [30, 70, 30, 25],
+      data: [30, 70, 60, 25, 40, 50],
       backgroundColor: [
         'rgba(166, 108, 255, 0.4)',
         'rgba(207, 245, 0, 0.8)',
         'rgba(166, 108, 255, 0.8)',
-        "rgb(217, 70, 239, 0.8)",
-        "rgb(244, 63, 94, 0.8)",
-        "rgb(14, 165, 233, 0.8)",
-        "rgb(132, 204, 22, 0.8)",
-        "rgb(245, 158, 11, 0.8)",
+        "rgba(94, 234, 212, 0.8)",
+        "rgba(244, 63, 94, 0.8)",
+        "rgba(253, 224, 71, 0.8)",
+        "rgba(103, 232, 249, 0.8)",
+        "rgba(217, 70, 239, 0.8)",
+        "rgba(14, 165, 233, 0.8)",
+        "rgba(132, 204, 22, 0.8)",
+        "rgba(245, 158, 11, 0.8)",
       ],
       borderColor: [
         'rgba(166, 108, 255, 0.8)',
         'rgba(207, 245, 0, 1)',
         'rgba(166, 108, 255, 1)',
-        "rgb(217, 70, 239, 1)",
-        "rgb(244, 63, 94, 1)",
-        "rgb(14, 165, 233, 1)",
-        "rgb(132, 204, 22, 1)",
-        "rgb(245, 158, 11, 1)",
+        "rgba(94, 234, 212, 1)",
+        "rgba(244, 63, 94, 1)",
+        "rgba(253, 224, 71, 1)",
+        "rgba(103, 232, 249, 1)",
+        "rgba(217, 70, 239, 1)",
+        "rgba(14, 165, 233, 1)",
+        "rgba(132, 204, 22, 1)",
+        "rgba(245, 158, 11, 1)",
       ],
       borderWidth: 1,
       cutout: "75%",
@@ -126,11 +140,11 @@ const options2 = {
   }
 };
 
-function DoughnutChart({width, type}) {
+
   return (
     <>
       {type === "2" ? (
-        <div className={`w-${width}`}>
+        <div className={`relative bottom-6 right-7 w-${width}`}>
         <Doughnut data={data} options={options} plugins={[ChartDataLabels]} />
         </div>
       ) : (
