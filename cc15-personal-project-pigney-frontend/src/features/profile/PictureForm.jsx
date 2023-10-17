@@ -3,7 +3,6 @@ import FormButton from './FormButton';
 
 function PictureForm({children, initialSrc, onSave}) {
     const [file, setFile] = useState(null);
-
     const inputEl = useRef(null);
   return (
     <>
@@ -22,7 +21,10 @@ function PictureForm({children, initialSrc, onSave}) {
         <div className='flex px-5 gap-2'>
           {file && (
             <>
-              <FormButton onClick={() => onSave(file)}>Save</FormButton>
+              <FormButton onClick={() => {
+                onSave(file)
+              }
+              }>Save</FormButton>
               <FormButton
                 onClick={() => {
                   inputEl.current.value = '';

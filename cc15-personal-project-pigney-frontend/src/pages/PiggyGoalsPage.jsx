@@ -10,7 +10,7 @@ import PiggyCountUpFunds from '../features/piggygoal/PiggyCountUpFunds'
 import PiggyGoalSaving from '../features/piggygoal/PiggyGoalSaving'
 
 function PiggyGoalsPage() {
-
+    
     const easingFnEaseOutSine = (t, b, c, d) => {
         return c * Math.sin(t/d * (Math.PI/2)) + b;
     };
@@ -19,7 +19,7 @@ function PiggyGoalsPage() {
     <>
       <div className='h-full w-full text-white grid grid-cols-4 pt-2 pb-6'>
         <div className='col-span-1'>
-          <ProfileCard />
+          <ProfileCard goal={true} />
         </div>
         <div className='col-span-2'>
           <div className='flex flex-col pt-4 h-full justify-around'>

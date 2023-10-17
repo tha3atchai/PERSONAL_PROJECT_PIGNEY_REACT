@@ -26,7 +26,7 @@ function CreateGoalButton({type}) {
           </div>
         </button>
         <Modal title={"CREATE GOALS"} open={isOpen} onClose={() => setIsOpen(false)}>
-          <CreateGoalForm text={"CREATE PIGGY"}/>
+          <CreateGoalForm onSuc={() => setIsOpen(false)} text={"CREATE PIGGY"}/>
         </Modal>
     </div>
   );
