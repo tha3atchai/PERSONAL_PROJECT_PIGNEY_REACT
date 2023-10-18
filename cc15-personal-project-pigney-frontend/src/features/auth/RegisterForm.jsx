@@ -42,7 +42,7 @@ function RegisterForm() {
     });
     const [error, setError] = useState({});
 
-    const { register, setDataUser, fetchData} = useAuth();
+    const { register, setDataUser, setDataGoal, setDataRecord, setInitialLoading} = useAuth();
 
     const onChangeInput = e => {
         setInput({...input, [e.target.name]: e.target.value});
@@ -56,9 +56,11 @@ function RegisterForm() {
         }
         setError({});
         register(input).then(res => {
+            setInitialLoading(true);
             localStorageService.setToken(res.data.token);
-            fetchData();
             setDataUser(res.data);
+            setDataGoal(res.data);
+            setDataRecord(res.data);
             navigate(`/profile/${res.data.user.id}`);
         }).catch(err => (
            toast.error(err.response?.data.message, {
@@ -67,7 +69,11 @@ function RegisterForm() {
             },
             theme: "colored",
            })
-        ));
+        )).finally(() => {
+            setTimeout(() => {
+            setInitialLoading(false);
+            }, 1800);
+        });
     };
 
   return (
@@ -126,7 +132,7 @@ function RegisterForm() {
             {error.confirmPassword && <InputErrorMessage message={error.confirmPassword}/>}
             </div>
             <div className='flex gap-4'>
-                <button className='bg-pigney-purple text-black text-lg font-medium rounded-full w-full p-3'>Sign up</button>
+                <button type='submit' className='bg-pigney-purple text-black text-lg font-medium rounded-full w-full p-3'>Sign up</button>
             </div>
         </form> 
     </>

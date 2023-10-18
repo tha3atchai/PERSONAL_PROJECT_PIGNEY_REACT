@@ -5,18 +5,31 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function DoughnutChart({width, type}) {
+function DoughnutChart({width, type, currentAmount, goalAmount, firstName}) {
+
+  let dad = 50;
+  let mom = 30;
+  let owner = 0;
+  let empty = goalAmount - (dad + mom + owner);
 
 const data = {
-  labels: ["", "Sin", "Joe", "Jane", "Pun", "Film"],
+  labels: ["empty", firstName , "dad", "mom"],
   datasets: [
     {
       label: "",
-      data: [30, 70, 60, 25, 40, 50],
+      data: [empty, owner, dad, mom],
       backgroundColor: [
         'rgba(166, 108, 255, 0.4)',
-        'rgba(207, 245, 0, 0.8)',
         'rgba(166, 108, 255, 0.8)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
         "rgba(94, 234, 212, 0.8)",
         "rgba(244, 63, 94, 0.8)",
         "rgba(253, 224, 71, 0.8)",
@@ -28,8 +41,16 @@ const data = {
       ],
       borderColor: [
         'rgba(166, 108, 255, 0.8)',
-        'rgba(207, 245, 0, 1)',
         'rgba(166, 108, 255, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
         "rgba(94, 234, 212, 1)",
         "rgba(244, 63, 94, 1)",
         "rgba(253, 224, 71, 1)",
@@ -85,17 +106,35 @@ const options = {
   },
 };
 
+// goalAmount(1000)/100
+// result = goalAmount - (dad + mom) 
+// 500 => [{500}, {0},dad , mom]
+// sum = result - owner; 
+// empty = sum;
+// owner=0
+// dad=200
+// mom=300
+
 
 const data2 = {
   labels: [],
   datasets: [
     {
       label: "",
-      data: [30, 70, 60, 25, 40, 50],
+      // data: [30, 70, 60, 25, 40, 50],
+      data: [empty, owner, dad, mom],
       backgroundColor: [
         'rgba(166, 108, 255, 0.4)',
-        'rgba(207, 245, 0, 0.8)',
         'rgba(166, 108, 255, 0.8)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
+        'rgba(207, 245, 0, 0.6)',
         "rgba(94, 234, 212, 0.8)",
         "rgba(244, 63, 94, 0.8)",
         "rgba(253, 224, 71, 0.8)",
@@ -107,8 +146,16 @@ const data2 = {
       ],
       borderColor: [
         'rgba(166, 108, 255, 0.8)',
-        'rgba(207, 245, 0, 1)',
         'rgba(166, 108, 255, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
+        'rgba(207, 245, 0, 1)',
         "rgba(94, 234, 212, 1)",
         "rgba(244, 63, 94, 1)",
         "rgba(253, 224, 71, 1)",

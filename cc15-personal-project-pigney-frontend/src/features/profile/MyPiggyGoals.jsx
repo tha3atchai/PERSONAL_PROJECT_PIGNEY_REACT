@@ -1,26 +1,8 @@
 import React from 'react'
 import CreateGoalButton from '../auth/CreateGoalButton'
-import PiggyGoal from './PiggyGoal';
 import Corousel from '../../components/Corousel';
 
 function MyPiggyGoals() {
-
-    const data = [
-        {id: 1},
-        {id: 2},
-        {id: 3},
-        {id: 4},
-        {id: 5},
-        {id: 6},
-        // {id: 7},
-        // {id: 8},
-        // {id: 9},
-        // {id: 10},
-    ];
-
-    let slides = [];
-
-    slides = data.map(x => [...slides, <PiggyGoal key={x.id}/>]);
 
   return (
     <>
@@ -30,7 +12,7 @@ function MyPiggyGoals() {
                 <CreateGoalButton /> 
             </div>
             <div className='w-[580px]'>
-                <Corousel slides={slides} />
+                <Corousel />
             </div>
         </div>
     </>

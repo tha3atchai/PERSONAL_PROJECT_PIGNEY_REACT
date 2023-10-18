@@ -13,7 +13,7 @@ function LoginForm() {
         password: "",
     });
 
-    const {login, setDataUser, fetchData} = useAuth();
+    const {login, setDataUser, setDataGoal, setDataRecord, setInitialLoading} = useAuth();
 
     const onChangeInput = e => {
         setInput({...input, [e.target.name]: e.target.value});
@@ -22,8 +22,10 @@ function LoginForm() {
     const onSubmitInput = e => {
         e.preventDefault();
         login(input).then(res => {
+            setInitialLoading(true);
             localStorageService.setToken(res.data.token);
-            fetchData();
+            setDataRecord(res.data);
+            setDataGoal(res.data);
             setDataUser(res.data);
             navigate(`/profile/${res.data.user.id}`);
         }).catch(err => (
@@ -33,7 +35,11 @@ function LoginForm() {
             },
             theme: "light",
            })
-        ))
+        )).finally(() => {
+            setTimeout(() => {
+            setInitialLoading(false);
+            }, 1800);
+        });
     };
 
   return (
@@ -57,7 +63,7 @@ function LoginForm() {
                 />
             </div>
             <div>
-                <button className='bg-pigney-lemon text-black text-lg font-medium rounded-full w-full p-3'>Sign in</button>
+                <button type='submit' className='bg-pigney-lemon text-black text-lg font-medium rounded-full w-full p-3'>Sign in</button>
             </div>
         </form>  
     </>

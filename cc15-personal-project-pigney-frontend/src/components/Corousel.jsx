@@ -3,10 +3,18 @@ import {
     BsFillArrowRightCircleFill,
     BsFillArrowLeftCircleFill,
   } from "react-icons/bs";
+import PiggyGoal from '../features/profile/PiggyGoal';
+import { useAuth } from '../hooks/use-auth';
 import { Link } from 'react-router-dom';
 
-function Corousel({slides}) {
+function Corousel() {
+    const {dataGoal} = useAuth();
     let [current, setCurrent] = useState(0);
+
+    let slides = [];
+    if(dataGoal.myGoal.length !== 0){
+    slides = dataGoal.myGoal.map(x => [...slides, <PiggyGoal key={x.id} {...x} />]);
+    }
 
     let previousSlide = () => {
       if (current === 0) setCurrent(slides.length - 1);
@@ -36,9 +44,8 @@ function Corousel({slides}) {
         <button onClick={previousSlide}>
           <BsFillArrowLeftCircleFill />
         </button>
-        <Link to="/piggygoals/27">
+        <Link to={dataGoal.myGoal.length !== 0 ? `/piggygoals/${slides[current][0].props.id}` : "/"}>
           <div className='text-3xl'>Click Here</div>
-          {/* <div className=''>to go piggy</div> */}
         </Link>
         <button onClick={nextSlide}>
           <BsFillArrowRightCircleFill />

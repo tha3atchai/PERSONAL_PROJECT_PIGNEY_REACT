@@ -11,12 +11,14 @@ const navs = [
 ];
 
 function Navbar() {
-  const {dataUser, setDataUser} = useAuth();
+  const {dataUser, setDataUser, setDataGoal, setDataRecord} = useAuth();
   const {pathname} = useLocation();
 
   const logout = () => {
     localStorageService.removeToken();
     setDataUser(null);
+    setDataGoal(null);
+    setDataRecord(null);
   };
 
   return (

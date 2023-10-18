@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CreateGoalForm({text}) {
     const navigate = useNavigate();
-    const {createGoal, fetchData} = useAuth();
+    const {createGoal, setDataGoal, dataGoal, fetchData, setInitialLoading} = useAuth();
     const [input, setInput] = useState({
         goalName: "",
         endDate: "",
@@ -29,21 +29,15 @@ function CreateGoalForm({text}) {
         formData.append("goalImage", body.goalImage);
         formData.append("body", JSON.stringify(body));
         createGoal(formData).then(res => {
-            console.log(res.data.goal.id);
-            fetchData();
+            setInitialLoading(true);
+            setDataGoal({...dataGoal, myGoal: [...dataGoal.myGoal, res.data.goal]});
             navigate(`/piggygoals/${res.data.goal.id}`);
-            // setInput({
-            //     goalName: "",
-            //     endDate: "",
-            //     goalAmount: "",
-            //     note: "",
-            //     goalImage: "",
-            //     status: "INPROCESS",
-            // });
-            // onSuc();
-            // fetchData();
         }).catch(err => {
             console.log(err);
+        }).finally(() => {
+            setTimeout(() => {
+            setInitialLoading(false);
+            }, 1800);
         });
     };
 

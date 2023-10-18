@@ -7,42 +7,33 @@ export const AuthContext = createContext();
 export default function AuthContextProvider({children}) {
     const [dataUser, setDataUser] = useState(null);
     const [dataGoal, setDataGoal] = useState(null);
+    const [dataRecord, setDataRecord] = useState(null);
     const [initialLoading, setInitialLoading] = useState(false);
+    
 
     const fetchData = async() => {
         try {
-            setInitialLoading(true);
             const httpResponse = await axios.get("/auth/me");
+            const httpResponseGoal = await axios.get("/piggygoals");
+            const httpResponseRecord = await axios.get("/piggygoals/record");
+            setDataRecord(httpResponseRecord.data);
+            setDataGoal(httpResponseGoal.data);
             setDataUser(httpResponse.data);
+            // setInitialLoading(true);
         }catch(err) {
             console.log(err);
         }finally {
-            setTimeout(() => {
+            // setTimeout(() => {
                 setInitialLoading(false);
-            }, 1800);
-        };
-    };
-
-    const fetchGoal = async() => {
-        try {
-            const httpResponseGoal = await axios.get("/piggygoals/");
-            setDataGoal(httpResponseGoal.data);
-        }catch(err) {
-            console.log(err);
+            // }, 1800);
         };
     };
 
     useEffect(() => {
         if(localStorageService.getToken()){
-        fetchData();
-        } 
+            fetchData();
+        }
         else setInitialLoading(false);
-    }, []);
-
-    useEffect(() => {
-        if(localStorageService.getToken()){
-        fetchGoal();
-        } 
     }, []);
 
     const register = body => {
@@ -62,7 +53,7 @@ export default function AuthContextProvider({children}) {
     };
 
     return (
-        <AuthContext.Provider value={{register, login, dataUser, setDataUser, initialLoading, setInitialLoading, fetchData, updateProfile, dataGoal, createGoal}}>
+        <AuthContext.Provider value={{register, login, dataUser, setDataUser, initialLoading, setInitialLoading, fetchData, updateProfile, dataGoal, createGoal, setDataGoal, dataRecord, setDataRecord}}>
             {children}
         </AuthContext.Provider> 
     );

@@ -12,13 +12,13 @@ function PiggyGoalButton({text}) {
 
   if(text === "Add Funds") {
     modal = (<Modal title={"ADD FUNDS"} open={isOpen} onClose={() => setIsOpen(false)}>
-      <CreateAddFundsAndWithWithdrawForm type={"Saving"} />
+      <CreateAddFundsAndWithWithdrawForm onSuccess={() => setIsOpen(false)} type={"Saving"} />
     </Modal>)
   }
 
   if(text === "Withdraw") {
     modal = (<Modal title={"WITHDRAW"} open={isOpen} onClose={() => setIsOpen(false)}>
-      <CreateAddFundsAndWithWithdrawForm type={"Withdraw"} />
+      <CreateAddFundsAndWithWithdrawForm onSuccess={() => setIsOpen(false)} type={"Withdraw"} />
     </Modal>)
   }
 
