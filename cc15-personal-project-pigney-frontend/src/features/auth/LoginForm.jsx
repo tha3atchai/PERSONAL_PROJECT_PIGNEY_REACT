@@ -13,7 +13,7 @@ function LoginForm() {
         password: "",
     });
 
-    const {login, setDataUser, setDataGoal, setDataRecord, setInitialLoading} = useAuth();
+    const {login, setDataUser, setDataGoal, setDataRecord, setInitialLoading, setDataGoalRecord, setDataRecordUser} = useAuth();
 
     const onChangeInput = e => {
         setInput({...input, [e.target.name]: e.target.value});
@@ -27,6 +27,8 @@ function LoginForm() {
             setDataRecord(res.data);
             setDataGoal(res.data);
             setDataUser(res.data);
+            setDataGoalRecord(res.data);
+            setDataRecordUser(res.data);
             navigate(`/profile/${res.data.user.id}`);
         }).catch(err => (
            toast.error(err.response?.data.message, {

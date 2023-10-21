@@ -42,7 +42,7 @@ function RegisterForm() {
     });
     const [error, setError] = useState({});
 
-    const { register, setDataUser, setDataGoal, setDataRecord, setInitialLoading} = useAuth();
+    const { register, setDataUser, setDataGoal, setDataRecord, setInitialLoading, setDataGoalRecord, setDataRecordUser} = useAuth();
 
     const onChangeInput = e => {
         setInput({...input, [e.target.name]: e.target.value});
@@ -61,6 +61,8 @@ function RegisterForm() {
             setDataUser(res.data);
             setDataGoal(res.data);
             setDataRecord(res.data);
+            setDataGoalRecord(res.data);
+            setDataRecordUser(res.data);
             navigate(`/profile/${res.data.user.id}`);
         }).catch(err => (
            toast.error(err.response?.data.message, {

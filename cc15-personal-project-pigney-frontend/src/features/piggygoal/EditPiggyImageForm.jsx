@@ -8,6 +8,9 @@ function EditPiggyImageForm({onSuccess, setInput, input}) {
         setInput({...input, goalImage: imageData});
         onSuccess();
     };
+
+    
+
   return (
     <>
       <PictureForm

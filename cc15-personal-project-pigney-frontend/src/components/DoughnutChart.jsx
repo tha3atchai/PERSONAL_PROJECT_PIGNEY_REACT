@@ -5,15 +5,18 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function DoughnutChart({width, type, currentAmount, goalAmount, firstName}) {
+function DoughnutChart({width, type, goalAmount, firstName, ownerAmount}) {
 
-  let dad = 50;
-  let mom = 30;
-  let owner = 0;
-  let empty = goalAmount - (dad + mom + owner);
+  let owner = ownerAmount;
+  let dad = 70;
+  let mom = 50;
+
+  let empty = +goalAmount - (dad + mom + owner);
+
+  if(+goalAmount === owner) empty = 0;
 
 const data = {
-  labels: ["empty", firstName , "dad", "mom"],
+  labels: ["", firstName , "dad", "mom"],
   datasets: [
     {
       label: "",
@@ -106,22 +109,11 @@ const options = {
   },
 };
 
-// goalAmount(1000)/100
-// result = goalAmount - (dad + mom) 
-// 500 => [{500}, {0},dad , mom]
-// sum = result - owner; 
-// empty = sum;
-// owner=0
-// dad=200
-// mom=300
-
-
 const data2 = {
   labels: [],
   datasets: [
     {
       label: "",
-      // data: [30, 70, 60, 25, 40, 50],
       data: [empty, owner, dad, mom],
       backgroundColor: [
         'rgba(166, 108, 255, 0.4)',

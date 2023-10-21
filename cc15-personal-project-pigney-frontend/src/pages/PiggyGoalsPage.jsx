@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BglighUp from '../layout/BglighUp'
 import ProfileFriends from '../features/profile/ProfileFriends'
 import ProfileCard from '../features/profile/ProfileCard'
@@ -10,22 +10,39 @@ import PiggyCountUpFunds from '../features/piggygoal/PiggyCountUpFunds'
 import PiggyGoalSaving from '../features/piggygoal/PiggyGoalSaving'
 import { useParams } from 'react-router-dom'
 import { useAuth } from '../hooks/use-auth'
+import axios from "../config/axios";
+import Complete from '../components/Complete'
 
 function PiggyGoalsPage() {
     const {piggygoalsId} = useParams();
-    const {dataUser, dataGoal} = useAuth();
+    const {dataUser, dataGoal, dataRecord, fetchData} = useAuth();
 
-
-    const result = dataGoal.myGoal.find(x => x.id === +piggygoalsId);
     const easingFnEaseOutSine = (t, b, c, d) => {
         return c * Math.sin(t/d * (Math.PI/2)) + b;
     };
 
+    const result = dataGoal.myGoal.find(x => x.id === +piggygoalsId);
+    let currentAmountPercentage = (100 * (+result.currentAmount / +result.goalAmount));
 
-    let currentAmountPercentage = 100 * ((100/(result.goalAmount - result.currentAmount)));
+    let sum = 0;
+    dataRecord.myRecord.map(x => x.piggyId === +piggygoalsId? x.status === "ADD" ? sum += x.fund : sum -= x.fund : x);
+
+    let success = false;
+    dataGoal.myGoal.map(x => x.id === +piggygoalsId && +x.goalAmount === +x.currentAmount ? success = true : x);
+
+    if(result.status !== "COMPLETE"){
+      if(success){
+        axios.put(`piggygoals/success/${+piggygoalsId}`).then(res => {
+          fetchData();
+        }).catch(err => {
+          console.log(err);
+        });
+    };
+    }
 
   return (
     <>
+    {success && <Complete />}
       <div className='h-full w-full text-white grid grid-cols-4 pt-2 pb-6'>
         <div className='col-span-1'>
           <ProfileCard result={result} goal={true} />
@@ -39,7 +56,7 @@ function PiggyGoalsPage() {
                 </div>
                 <div className='col-span-2'>
                     <div className='absolute'>
-                        <DoughnutChart firstName={dataUser.user.firstName} {...result} width={72} type={"2"} />
+                        <DoughnutChart ownerAmount={sum} firstName={dataUser.user.firstName} {...result} width={72} type={"2"} />
                     </div>
                 </div>
                 <div className='col-span-1'>
@@ -51,7 +68,7 @@ function PiggyGoalsPage() {
                 </div>
             </div>
             <div>
-                <PiggyGoalNote />
+                <PiggyGoalNote success={success} />
             </div>
           </div>
         </div>

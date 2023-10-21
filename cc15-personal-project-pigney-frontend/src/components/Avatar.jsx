@@ -5,7 +5,7 @@ function Avatar({w = "10", rounded = "full",  src}) {
     const classes = `rounded-${rounded} aspect-square w-${w}` ;
   return (
     <>
-        <img src={src || defaultImage} alt="user" className={classes} /> 
+        <img src={src || defaultImage} alt="" className={classes} /> 
     </>
   )
 }

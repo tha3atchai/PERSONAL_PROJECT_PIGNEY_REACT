@@ -23,6 +23,7 @@ export default {
         "coin-flying1": "bounce 3s infinite",
         "coin-flying2": "bounce 2.6s infinite",
         "loading": "loading 2.2s cubic-bezier(0, 0, 0.2, 1) infinite",
+        "complete": "loading2 3.2s cubic-bezier(0, 0, 0.2, 1)",
       },
       keyframes: {
         logopulse: {
@@ -49,6 +50,24 @@ export default {
           "75%, 100%": {
             transform: "scale(32)",
             opacity: .8,
+          },
+        },
+        loading2: {
+          "0%, 25%": {
+            transform: "scale(1)",
+            opacity: .2,
+          },
+          "25%, 65%": {
+            transform: "scale(1.85)",
+            opacity: 0,
+          },
+          "65%, 75%": {
+            transform: "scale(4)",
+            opacity: .4,
+          },
+          "75%, 100%": {
+            transform: "scale(8)",
+            opacity: 0,
           },
         },
       },

@@ -1,7 +1,7 @@
 import React from 'react'
 import ProfileAvatar from '../profile/ProfileAvatar'
 
-function PiggyRecordItem({createdAt, fund, status}) {
+function PiggyRecordItem({createdAt, fund, status, user}) {
   return (
     <>
         <div className='flex flex-col w-full px-2 items-center gap-2 justify-between'>
@@ -9,11 +9,11 @@ function PiggyRecordItem({createdAt, fund, status}) {
                 <div className='col-span-3'>{createdAt.split("T")[0]}</div>
                 <div className='col-span-2'>
                     <div className='flex pl-3 w-full justify-center'>
-                        <ProfileAvatar />
+                        <ProfileAvatar src={user.profileImage} />
                     </div>
                 </div>
                 <div className='col-span-2'>
-                    <div className={`${status === "WITHDRAW"? "text-pigney-red": "text-pigney-lemon"} flex justify-end`}>+${fund}</div>
+                    <div className={`${status === "WITHDRAW"? "text-pigney-red": "text-pigney-lemon"} flex justify-end`}>{`${status === "WITHDRAW" ? `-$${fund}` : `+$${fund}`}`}</div>
                 </div>
             </div>
             <hr className='w-full' />

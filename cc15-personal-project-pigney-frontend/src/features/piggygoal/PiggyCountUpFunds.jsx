@@ -2,12 +2,11 @@ import React from 'react'
 import CountUp from "react-countup";
 
 function PiggyCountUpFunds({result}) {
-    console.log(result);
     let endday = new Date(result.endDate.split("T")[0]);
     let today = new Date();
     let distance = endday.getTime() - today.getTime();
     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    let moneyPerDay = (+result.goalAmount - result.currentAmount) / days;
+    let moneyPerDay = (+result.goalAmount - +result.currentAmount) / days;
 
     const easingFnEaseOutSine = (t, b, c, d) => {
         return c * Math.sin(t/d * (Math.PI/2)) + b;

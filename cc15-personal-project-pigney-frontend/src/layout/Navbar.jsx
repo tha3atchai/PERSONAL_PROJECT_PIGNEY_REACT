@@ -11,7 +11,7 @@ const navs = [
 ];
 
 function Navbar() {
-  const {dataUser, setDataUser, setDataGoal, setDataRecord} = useAuth();
+  const {dataUser, setDataUser, setDataGoal, setDataRecord, setDataGoalRecord, setDataRecordUser} = useAuth();
   const {pathname} = useLocation();
 
   const logout = () => {
@@ -19,6 +19,8 @@ function Navbar() {
     setDataUser(null);
     setDataGoal(null);
     setDataRecord(null);
+    setDataGoalRecord(null);
+    setDataRecordUser(null);
   };
 
   return (

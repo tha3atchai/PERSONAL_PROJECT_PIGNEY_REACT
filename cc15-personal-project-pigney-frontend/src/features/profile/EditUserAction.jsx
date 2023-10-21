@@ -18,7 +18,7 @@ function EditUserAction({size, type, setInput, input}) {
           </Modal>
         ) : (
           <Modal open={isOpen} title={"Edit Profile"} onClose={() => setIsOpen(false)}>
-              <EditProfileForm onSuccess={() => setIsOpen(false)} />
+              <EditProfileForm type={type} onSuccess={() => setIsOpen(false)} />
           </Modal>
         )}
     </>

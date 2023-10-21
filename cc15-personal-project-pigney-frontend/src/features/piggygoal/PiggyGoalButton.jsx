@@ -28,13 +28,13 @@ function PiggyGoalButton({text}) {
 
   if(text === "Delete") {
     modal = (<Modal title={"DELETE"} open={isOpen} onClose={() => setIsOpen(false)}>
-      <DeleteGoal />
+      <DeleteGoal onSuccess={() => setIsOpen(false)} />
     </Modal>)
   }
 
   if(text === "Edit") {
     modal = (<Modal title={"EDIT"} open={isOpen} onClose={() => setIsOpen(false)}>
-      <CreateGoalForm text={"EDIT PIGGY"} />
+      <CreateGoalForm onSuccess={() => setIsOpen(false)} text={"EDIT PIGGY"} edit={true} />
     </Modal>)
   }
 

@@ -13,7 +13,6 @@ function CreateGoalButton({type}) {
 
   const handleClick = () => dataUser? setIsOpen(true) : navigate("/login");
 
-
   let context = (
     <div className='text-black font-medium text-xs'>
         <button onClick={handleClick} className='flex items-center gap-2 rounded-full px-4 py-2 bg-pigney-lemon shadow-pigney-button hover:shadow-pigney-lemon/30 duration-200'>
