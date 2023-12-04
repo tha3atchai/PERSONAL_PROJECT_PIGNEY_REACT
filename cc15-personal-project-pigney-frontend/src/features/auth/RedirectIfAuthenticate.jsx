@@ -1,21 +1,20 @@
-import React from 'react'
-import { useAuth } from '../../hooks/use-auth';
-import { Navigate } from 'react-router-dom';
-import Loading from '../../components/Loading';
-import { useEffect } from 'react';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import localStorageService from "../../utils/local-storage";
+import { useSelector } from "react-redux";
 
-function RedirectIfAuthenticate({children}) {
-    const {dataUser} = useAuth();
-   
-    if(dataUser) {
+function RedirectIfAuthenticate({ children }) {
+  const { dataUser } = useSelector(state => state.auth);
+
+  if (localStorageService.getToken() && dataUser) {
     return (
-        <>
-            <Navigate to={`/profile/${dataUser.user.id}`} />
-        </>
-    )
-    }
+      <>
+        <Navigate to={`/profile/${dataUser.id}`} />
+      </>
+    );
+  }
 
-    return children;
+  return children;
 }
 
-export default RedirectIfAuthenticate
+export default RedirectIfAuthenticate;

@@ -1,13 +1,12 @@
-import React from 'react'
-import { useAuth } from '../../hooks/use-auth'
-import { Navigate } from 'react-router-dom';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import localStorageService from "../../utils/local-storage";
 
-function Authenticated({children}) {
-    const {dataUser} = useAuth();
-    if(!dataUser) {
-        return <Navigate to="/login" />;
-    }
+function Authenticated({ children }) {
+  if (!localStorageService.getToken()) {
+    return <Navigate to="/login" />;
+  }
   return children;
 }
 
-export default Authenticated
+export default Authenticated;
